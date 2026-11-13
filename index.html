@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎃 Zeropuff's Haunted Hub — Kiroween 2026</title>
+<style>
+:root{--bg:#0d0a1a;--card:#1a1433;--card2:#221a44;--orange:#ff7518;--pumpkin:#ffa02e;--purple:#a855f7;--green:#4ade80;--text:#f5f0ff;--muted:#b8aed9}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(1000px 500px at 20% -10%,#2a1650 0%,transparent 60%),radial-gradient(800px 400px at 90% 0%,#3a1c00 0%,transparent 55%),var(--bg);color:var(--text);min-height:100vh}
+a{color:#ffb86b}
+header{padding:28px 20px 10px;text-align:center}
+h1{font-size:2.2rem;margin:0;line-height:1.1}
+h1 span{color:var(--orange)}
+.sub{color:var(--muted);margin:8px 0 0}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 0}
+.badge{background:#2a1e55;border:1px solid #4c3a8a;padding:5px 10px;border-radius:999px;font-size:.82rem}
+.countdown{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 6px}
+.cd{background:var(--card);border:1px solid #3a2d6b;border-radius:12px;padding:10px 14px;min-width:110px;text-align:center}
+.cd b{display:block;font-size:1.25rem;color:var(--pumpkin)}
+.cd span{font-size:.75rem;color:var(--muted)}
+main{max-width:1080px;margin:0 auto;padding:16px 16px 40px}
+.search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #4c3a8a;background:#140f2a;color:var(--text);font-size:1rem;margin:10px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid #33265e;border-radius:14px;padding:14px}
+.card:hover{border-color:var(--orange)}
+.card h3{margin:0 0 4px;font-size:1.05rem}
+.card h3 a{text-decoration:none;color:var(--text)}
+.card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.45}
+.tag{display:inline-block;background:#2f2358;color:#d8cfff;font-size:.72rem;padding:3px 8px;border-radius:999px;margin-top:8px}
+section{margin-top:26px}
+section>h2{font-size:1.35rem;margin:0 0 4px}
+section>p{color:var(--muted);margin:0 0 14px}
+.panel{background:linear-gradient(180deg,#1e153d,#171029);border:1px solid #5b3aa8;border-radius:16px;padding:18px}
+label{display:block;font-size:.85rem;color:var(--muted);margin:12px 0 6px}
+input[type=password],input[type=text],textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid #4c3a8a;background:#0f0b22;color:var(--text);font-size:.95rem}
+textarea{min-height:84px;resize:vertical}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+button{background:var(--orange);color:#1a0d00;border:0;padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+button.secondary{background:#2a1e55;color:#fff;border:1px solid #5b4a9a}
+button:disabled{opacity:.55;cursor:not-allowed}
+.preset{font-size:.85rem}
+#exaOut{white-space:pre-wrap;background:#0b0718;border:1px solid #33265e;border-radius:12px;padding:14px;margin-top:14px;min-height:90px;line-height:1.6}
+.small{font-size:.82rem;color:var(--muted);line-height:1.5}
+.deal{border-left:3px solid var(--orange);padding:10px 12px;background:#171029;border-radius:8px;margin-bottom:8px}
+.deal b{color:#ffd9a8}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+.pumpkins{font-size:1.6rem;letter-spacing:.3rem}
+</style>
+</head>
+<body>
+<header>
+<div class="pumpkins">🎃 👻 🕸️ 🦇 🌕</div>
+<h1>Zeropuff's <span>Haunted Hub</span></h1>
+<p class="sub">One spooky dashboard for free tools, domains &amp; daily deals — built with Kiro for Kiroween 2026.</p>
+<div class="badges"><span class="badge">🎃 Costume Contest</span><span class="badge">Kiroween 2026</span><span class="badge">Built with Kiro spec</span><span class="badge">EXAONE inside</span></div>
+<div class="countdown">
+<div class="cd"><b id="cd-credits">—</b><span>credits request closes<br>Dec 1, 12:00 PT</span></div>
+<div class="cd"><b id="cd-submit">—</b><span>submission closes<br>Dec 4, 14:00 PT</span></div>
+<div class="cd"><b id="cd-expire">—</b><span>credits expire<br>Dec 31, 23:59 PT</span></div>
+</div>
+</header>
+<main>
+<input class="search" id="q" placeholder="🔍 Search tools, domains, deals… e.g. domain, AI, DNS" oninput="filterCards()">
+
+<section>
+<h2>🧰 Free tools &amp; domains</h2>
+<p>Every card below is a real site the author actually uses. Click to open in a new tab.</p>
+<div class="grid" id="cards"></div>
+</section>
+
+<section>
+<h2>👻 Ask EXAONE — the Korean AI inside</h2>
+<p>EXAONE 2.5 (LG AI Research) is free, no card, OpenAI-compatible at api.exaone.ai. Your key stays in <b>this browser only</b> (localStorage) — it is never sent to any other server and never committed to the repo.</p>
+<div class="panel">
+<label for="key">EXAONE API key (stored locally only)</label>
+<input type="password" id="key" placeholder="Paste your key from docs.exaone.ai → My profile → API key" autocomplete="off">
+<label for="prompt">Ask it something</label>
+<textarea id="prompt">Summarize in 3 bullets what I should check today on this dashboard: free domains, free AI, and daily deals.</textarea>
+<div class="row">
+<button onclick="askExaone()">✨ Ask EXAONE</button>
+<button class="secondary preset" onclick="setPrompt('Recommend one free tool from this dashboard for building a small website, and explain why in one sentence.')">Recommend a tool</button>
+<button class="secondary preset" onclick="setPrompt('Give me 3 practical, free ways to get more out of Kiro this week. Keep it short.')">Kiro tips</button>
+<button class="secondary preset" onclick="setPrompt('Explain what a public suffix list is, and why is-a.si not being on it matters for Cloudflare, in plain language.')">Explain PSL</button>
+<button class="secondary preset" onclick="clearKey()">Clear saved key</button>
+</div>
+<div id="exaOut">Your answer will appear here. No key is stored in the repo — enter it above once per browser.</div>
+<p class="small">Model: <code>k-exaone_v2.5</code> · Endpoint: <code>POST https://api.exaone.ai/v1/chat/completions</code> · If the browser blocks the call (CORS), open this page from a local server or use the key in your own script — the code in this file shows the exact request.</p>
+</div>
+</section>
+
+<section>
+<h2>🕷️ Today's deals</h2>
+<p>Live feed from 线报酷 (Xianbao, public API, no key). If the live feed is blocked by the browser, the sample deals below still show.</p>
+<div class="row"><button onclick="loadDeals()">↻ Refresh deals</button></div>
+<div id="deals" style="margin-top:12px"></div>
+</section>
+
+<section>
+<h2>🎃 How this was built</h2>
+<p class="small">Spec-driven with Kiro: see <code>.kiro/specs/halloween-dashboard/</code> in the repo — requirements, design and tasks. The repo root must contain a <code>.kiro</code> directory for Kiroween. Category: Costume Contest — any app, with a polished, spooky interface that helps it work.</p>
+</section>
+</main>
+<footer>🎃 Zeropuff's Haunted Hub · Kiroween 2026 · Costume Contest · Happy haunting, zero smoke — just exhale.</footer>
+<script>
+const SITES=[
+{name:"Cloudflare Dashboard",url:"https://dash.cloudflare.com/",desc:"DNS, Pages, Workers and Email Routing for your domains.",tag:"domain"},
+{name:"SEUS — PublicFreeSuffix",url:"https://s.eus/",desc:"Free domains like zeropuff.is-a.si. 30 SEC/year, community points.",tag:"domain"},
+{name:"DNSHE",url:"https://www.dnshe.com/",desc:"Free domains, now permanent after 5 friend assists.",tag:"domain"},
+{name:"DigitalPlat",url:"https://domain.digitalplat.org/",desc:"Free dpdns.org domains, renewed to 2027-12-21.",tag:"domain"},
+{name:"KataBump / kdns.fr",url:"https://dashboard.katabump.com/",desc:"Free kdns.fr subdomain, Cloudflare-delegated.",tag:"domain"},
+{name:"LXI.be Panel",url:"https://panel.lxi.be/",desc:"Permanently free hosting, Virtualmin, SSH on 2222.",tag:"hosting"},
+{name:"eu.org",url:"https://eu.org/",desc:"Free eu.org domain application.",tag:"domain"},
+{name:"EXAONE API Docs",url:"https://docs.exaone.ai/",desc:"LG K-EXAONE 2.5 — free API, 512K context, OpenAI-compatible.",tag:"AI"},
+{name:"线报酷 — Xianbao",url:"https://new.xianbao.fun/",desc:"Minute-level deals feed, official open API, no key.",tag:"deals"},
+{name:"Kiro",url:"https://kiro.dev/",desc:"The agentic IDE this app was built with. Free tier: 50 credits/month.",tag:"AI"},
+{name:"Kiroween 2026",url:"https://kiroween.devpost.com/",desc:"The hackathon this dashboard was built for. $100,000 prizes.",tag:"hackathon"},
+{name:"GitHub",url:"https://github.com/",desc:"Where this repo lives. Push = deploy, for Pages / Vercel / Cloudflare.",tag:"tool"},
+];
+function renderCards(list){
+document.getElementById('cards').innerHTML=list.map(s=>`<div class="card"><h3><a href="${s.url}" target="_blank" rel="noopener">${s.name} ↗</a></h3><p>${s.desc}</p><span class="tag">${s.tag}</span></div>`).join('');
+}
+function filterCards(){
+const q=document.getElementById('q').value.toLowerCase();
+renderCards(SITES.filter(s=>(s.name+s.desc+s.tag).toLowerCase().includes(q)));
+}
+renderCards(SITES);
+function daysTo(dateStr){
+const d=new Date(dateStr); const now=new Date();
+const days=Math.ceil((d-now)/86400000); return days>=0?days+' days left': 'closed';
+}
+document.getElementById('cd-credits').textContent=daysTo('2026-12-01T12:00:00-08:00');
+document.getElementById('cd-submit').textContent=daysTo('2026-12-04T14:00:00-08:00');
+document.getElementById('cd-expire').textContent=daysTo('2026-12-31T23:59:00-08:00');
+function setPrompt(t){document.getElementById('prompt').value=t;}
+function clearKey(){localStorage.removeItem('exaone_key');document.getElementById('key').value='';document.getElementById('exaOut').textContent='Saved key cleared.';}
+document.getElementById('key').value=localStorage.getItem('exaone_key')||'';
+async function askExaone(){
+const key=document.getElementById('key').value.trim();
+const prompt=document.getElementById('prompt').value.trim();
+const out=document.getElementById('exaOut');
+if(!key){out.textContent='⚠️ Paste your EXAONE API key above first. It is saved only in this browser (localStorage).';return;}
+if(!prompt){out.textContent='⚠️ Type a question first.';return;}
+localStorage.setItem('exaone_key',key);
+out.textContent='🎃 Asking EXAONE…';
+try{
+const r=await fetch('https://api.exaone.ai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model:'k-exaone_v2.5',messages:[{role:'user',content:prompt}],temperature:0.7})});
+const j=await r.json();
+if(!r.ok){out.textContent='EXAONE returned ' + r.status + ': ' + JSON.stringify(j,null,2);return;}
+out.textContent=j.choices && j.choices[0] && j.choices[0].message ? j.choices[0].message.content : JSON.stringify(j,null,2);
+}catch(e){out.textContent='⚠️ Request failed (browser / network / CORS): '+e.message+'\n\nThe exact request is: POST https://api.exaone.ai/v1/chat/completions, model k-exaone_v2.5, Authorization: Bearer <your key>. Try the same call from curl or your own script.';}
+}
+const SAMPLE=[
+{title:"Check 线报酷 feed — 22 channels, updated every minute",desc:"Open the Xianbao card above for today's freebies, app licences and deals."},
+{title:"Kiro free tier — 50 credits / month",desc:"No card. Enough to try the dashboard's spec workflow in Kiro."},
+{title:"EXAONE free API — no card, no paid tier announced",desc:"512K context, Korean + English, OpenAI-compatible. Free period has no published end date."},
+];
+async function loadDeals(){
+const box=document.getElementById('deals');
+box.innerHTML='<p class="small">Loading live feed…</p>';
+try{
+const r=await fetch('https://new.xianbao.fun/api/v1/feed?limit=5');
+if(!r.ok) throw new Error('HTTP '+r.status);
+const j=await r.json();
+const items=(j.data||j.items||j||[]).slice(0,5);
+if(!items.length) throw new Error('empty feed');
+box.innerHTML=items.map(it=>`<div class="deal"><b>${escapeHtml(it.title||it.name||'Deal')}</b><br><span class="small">${escapeHtml(it.desc||it.summary||it.url||'')}</span></div>`).join('');
+}catch(e){
+box.innerHTML='<p class="small">Live feed blocked in this browser ('+escapeHtml(e.message)+') — showing samples:</p>'+SAMPLE.map(d=>`<div class="deal"><b>${d.title}</b><br><span class="small">${d.desc}</span></div>`).join('');
+}
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+loadDeals();
+</script>
+</body>
+</html>
